@@ -17,4 +17,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:text="We are so fucked"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="112dp" />
+
 </android.support.constraint.ConstraintLayout>
