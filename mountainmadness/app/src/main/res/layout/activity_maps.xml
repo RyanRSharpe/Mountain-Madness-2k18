@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,12 +13,23 @@
         android:layout_height="50dip"
         android:text="@string/map_button" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/gCL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="17dp"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/star_big_on" />
+
     <fragment
-        android:layout_below="@id/map_button"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/map_button"
         tools:context="com.example.mountainmadness.mountainmadness.MapsActivity" />
 
 </RelativeLayout>

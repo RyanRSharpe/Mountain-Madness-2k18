@@ -1,7 +1,9 @@
 package com.example.mountainmadness.mountainmadness;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -34,6 +36,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         String msg = "test";
+
+        FloatingActionButton glcfab = (FloatingActionButton) findViewById(R.id.gCL);
+        glcfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent startIntent = new Intent(getApplicationContext(), glcActivity.class);
+                startActivity(startIntent);
+            }
+        });
 
     final Task<Location> loc;
         final boolean flag1 = ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") == 0;

@@ -50,6 +50,15 @@
                 android:value="com.example.mountainmadness.mountainmadness.MainActivity" />
         </activity>
         <activity
+            android:name=".glcActivity"
+            android:label="@string/title_activity_glc"
+            android:parentActivityName=".MapsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mountainmadness.mountainmadness.MapsActivity" />
+        </activity>
+        <activity
             android:name=".historyActivity"
             android:label="@string/title_activity_history"
             android:parentActivityName=".MainActivity"
