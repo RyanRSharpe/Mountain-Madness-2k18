@@ -2,7 +2,7 @@
 <bitmap
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:src="@drawable/hiking"
-    android:tileMode="disabled"
+    android:tileMode="repeat"
     android:dither="true"
 />
 

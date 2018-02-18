@@ -8,10 +8,23 @@
     android:layout_height="match_parent"
     tools:context="com.example.mountainmadness.mountainmadness.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="361dp"
+    <Button
+        android:id="@+id/button"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/home_button"
+        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchorGravity="left|center" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:background="@drawable/hikingdrawable">
+
     </RelativeLayout>
 
     <android.support.design.widget.AppBarLayout
@@ -19,18 +32,24 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/home_button" />
-
     </android.support.design.widget.AppBarLayout>
 
     <include
         android:id="@+id/include2"
         layout="@layout/content_main" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="Mountain Madness 2k18"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="36sp"
+        android:textStyle="bold|italic" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -43,11 +62,13 @@
 
     <Button
         android:id="@+id/historyButton"
-        android:layout_width="wrap_content"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="385dp"
         android:text="@string/historyButton"
         app:layout_anchor="@+id/include2"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchorGravity="left|bottom" />
+
+        />
 
 </android.support.design.widget.CoordinatorLayout>
