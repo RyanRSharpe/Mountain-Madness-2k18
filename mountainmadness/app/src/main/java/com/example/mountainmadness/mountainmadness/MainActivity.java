@@ -1,13 +1,12 @@
 package com.example.mountainmadness.mountainmadness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                setContentView(R.layout.activity_maps);
+            public void onClick(View view) {
+                Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(startIntent);
             }
         });
-    }
+    
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
