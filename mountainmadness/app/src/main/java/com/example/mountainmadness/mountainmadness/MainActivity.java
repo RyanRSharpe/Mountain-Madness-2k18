@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(historyIntent);
             }
         });
-    
 }
 
     @Override
