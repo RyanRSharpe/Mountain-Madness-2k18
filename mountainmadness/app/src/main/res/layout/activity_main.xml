@@ -22,7 +22,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/hikingdrawable">
 
     </RelativeLayout>
@@ -62,12 +62,12 @@
 
     <Button
         android:id="@+id/historyButton"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="385dp"
         android:text="@string/historyButton"
-        app:layout_anchor="@+id/include2"
+        app:layout_anchorGravity="left|center"
 
         />
 
