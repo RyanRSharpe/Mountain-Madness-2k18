@@ -1,9 +1,12 @@
 package com.example.mountainmadness.mountainmadness;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -49,43 +52,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         final Task<Location> loc;
-            final boolean flag1 = ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") == 0;
-            final boolean flag2 = ContextCompat.checkSelfPermission(this,"android.permission.ACCESS_COARSE_LOCATION") == 0;
-        if(flag1 && flag2){
+        final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+        int i = 10;
+        while(i==10) {
+            if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != PackageManager.PERMISSION_GRANTED) {
 
-            loc = mFusedLocationClient.getLastLocation();
-            if(loc == null){
-                //Toast.makeText(MapsActivity.this, "last loc null", Toast.LENGTH_SHORT).show();
-                Button butt = findViewById(R.id.map_button);
-                butt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MapsActivity.this,"last loc null", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            else{
-                Button butt = findViewById(R.id.map_button);
-                butt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MapsActivity.this, loc.getResult().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                //Toast.makeText(this, loc.toString(), Toast.LENGTH_SHORT).show();
-            }
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
 
+            } else {
+                i=9;
+            }
+        }
+
+        loc = mFusedLocationClient.getLastLocation();
+        if(loc == null){
+            //Toast.makeText(MapsActivity.this, "last loc null", Toast.LENGTH_SHORT).show();
+            Button butt = findViewById(R.id.map_button);
+            butt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(MapsActivity.this,"last loc null", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         else{
             Button butt = findViewById(R.id.map_button);
             butt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(MapsActivity.this, Boolean.toString(flag1) + " " + Boolean.toString(flag2), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, loc.getResult().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-
+            //Toast.makeText(this, loc.toString(), Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
 
