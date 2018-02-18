@@ -9,8 +9,9 @@ import java.util.ArrayList;
  */
 
 public class StrArr {
-    public static ArrayList strArr = new ArrayList<String>(0);
-    public static ArrayList LatLngArr = new ArrayList<LatLng>(0);
+    public static boolean render_flag = false;
+    public static ArrayList<String> strArr = new ArrayList<String>(0);
+    public static ArrayList<LatLng> LatLngArr = new ArrayList<LatLng>(0);
     //Arrays.asList("a", "b", "c", "d", "e")
     public static void addBack(String s, LatLng ll){
         if(strArr.size()==0){

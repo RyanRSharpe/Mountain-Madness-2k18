@@ -179,7 +179,7 @@ public class glcActivity extends AppCompatActivity implements
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            
+
             final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
             int i = 10;
             while(i==10) {

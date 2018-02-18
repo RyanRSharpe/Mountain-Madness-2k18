@@ -18,15 +18,6 @@ public class historyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        ArrayList strArr = new ArrayList<String>(0);
-//        //Arrays.asList("a", "b", "c", "d", "e")
-//        for(int i=0;i<200;i++){
-//            strArr.add(Integer.toString(i));
-//        }
-//        if(StrArr.strArr.size() <200)
-//        for(int i=0;i<200;i++){
-//            StrArr.strArr.add(Integer.toString(i));
-//        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.stock_textview, StrArr.strArr);
@@ -40,8 +31,9 @@ public class historyActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Your path will be rendered!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                StrArr.render_flag = true;
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
