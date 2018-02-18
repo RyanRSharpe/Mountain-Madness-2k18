@@ -18,6 +18,17 @@
         app:layout_anchor="@+id/relativeLayout"
         app:layout_anchorGravity="left|center" />
 
+    <Button
+        android:id="@+id/historyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="480dp"
+        android:text="@string/historyButton"
+        app:layout_anchorGravity="left|center"
+
+        />
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
@@ -59,16 +70,5 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorAccent"
         app:srcCompat="@android:drawable/ic_dialog_map" />
-
-    <Button
-        android:id="@+id/historyButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="385dp"
-        android:text="@string/historyButton"
-        app:layout_anchorGravity="left|center"
-
-        />
 
 </android.support.design.widget.CoordinatorLayout>
