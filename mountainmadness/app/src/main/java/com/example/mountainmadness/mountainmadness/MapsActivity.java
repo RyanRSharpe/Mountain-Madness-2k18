@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -28,24 +26,27 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    private Task<Location> loc;
     private FusedLocationProviderClient mFusedLocationClient;
+    private void func(){
+        int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+        int i = 10;
+        while(i==10) {
+            if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != PackageManager.PERMISSION_GRANTED) {
 
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+
+            } else {
+                i=9;
+            }
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,22 +69,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        final Task<Location> loc;
-        final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-        int i = 10;
-        while(i==10) {
-            if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != PackageManager.PERMISSION_GRANTED) {
 
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
 
-            } else {
-                i=9;
-            }
-        }
-
+        func();
         loc = mFusedLocationClient.getLastLocation();
         if(loc == null){
             //Toast.makeText(MapsActivity.this, "last loc null", Toast.LENGTH_SHORT).show();
@@ -92,6 +80,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(MapsActivity.this,"last loc null", Toast.LENGTH_SHORT).show();
+                    func();
+                    loc = mFusedLocationClient.getLastLocation();
+
                 }
             });
         }
@@ -100,7 +91,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             butt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(MapsActivity.this, loc.getResult().toString(), Toast.LENGTH_SHORT).show();
+
+                    Location l = loc.getResult();
+                    LatLng ll = new LatLng(l.getLatitude(),l.getLongitude());
+                    StrArr.addBack("Latitude: "+l.getLatitude()+", "+"Longitude: "+l.getLongitude(),ll);
+                    Toast.makeText(MapsActivity.this, "Latitude: "+l.getLatitude()+"\n"+"Longitude: "+l.getLongitude(), Toast.LENGTH_SHORT).show();
+                    func();
+                    loc = mFusedLocationClient.getLastLocation();
                 }
             });
             //Toast.makeText(this, loc.toString(), Toast.LENGTH_SHORT).show();
