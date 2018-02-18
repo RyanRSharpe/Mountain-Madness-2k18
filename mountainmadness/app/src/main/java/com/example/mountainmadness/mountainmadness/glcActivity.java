@@ -6,12 +6,11 @@ import android.content.IntentSender;
 import android.content.IntentSender.SendIntentException;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -24,7 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -32,8 +30,9 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.maps.model.LatLng;
 
-import static com.google.android.gms.common.api.GoogleApiClient.*;
+import static com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 
 public class glcActivity extends AppCompatActivity implements
         ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
@@ -43,7 +42,7 @@ public class glcActivity extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     LocationRequest mLocationRequest;
-
+    LatLng ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +72,7 @@ public class glcActivity extends AppCompatActivity implements
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
+        StrArr.addBack(_latitude.getText()+", "+_longitude.getText(),ll);
     }
 
     @Override
@@ -187,6 +187,7 @@ public class glcActivity extends AppCompatActivity implements
                 _progressBar.setVisibility(View.INVISIBLE);
                 _latitude.setText("Latitude: " + String.valueOf(mLastLocation.getLatitude()));
                 _longitude.setText("Longitude: " + String.valueOf(mLastLocation.getLongitude()));
+                ll = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
             } else {
                 /*if there is no last known location. Which means the device has no data for the loction currently.
                 * So we will get the current location.
@@ -208,5 +209,6 @@ public class glcActivity extends AppCompatActivity implements
         _progressBar.setVisibility(View.INVISIBLE);
         _latitude.setText("Latitude: " + String.valueOf(mLastLocation.getLatitude()));
         _longitude.setText("Longitude: " + String.valueOf(mLastLocation.getLongitude()));
+        ll = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
     }
 }
