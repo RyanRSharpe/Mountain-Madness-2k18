@@ -10,7 +10,7 @@
         android:id="@+id/map_button"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:text="@string/home_button" />
+        android:text="@string/map_button" />
 
     <fragment
         android:layout_below="@id/map_button"
