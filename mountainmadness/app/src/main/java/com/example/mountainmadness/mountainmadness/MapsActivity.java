@@ -24,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 
@@ -137,8 +138,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 i++;
             }
             StrArr.render_flag = false;
-            if (StrArr.LatLngArr.size() > 1){ //comment out this line and line below if drawing crashes the stuf
-               lineOptions.addAll(StrArr.LatLngArr);}
+            //GoogleMap map;
+            // ... get a map.
+            // Add a thin red line from London to New York.
+            Polyline line = mMap.addPolyline(new PolylineOptions()
+                    .addAll(StrArr.LatLngArr)
+                    .width(8)
+                    .color(Color.RED));
+            //if (StrArr.LatLngArr.size() > 1){ //comment out this line and line below if drawing crashes the stuf
+               //lineOptions.addAll(StrArr.LatLngArr);}
         }else{
             mMap.clear();
         }
@@ -146,9 +154,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    /*
     //Polyline magic
 
     public PolylineOptions lineOptions = null;
+
+
 
     // Fetches data from url passed
     private class FetchUrl extends AsyncTask<String, Void, String> {
@@ -293,7 +304,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
     }
-
+*/
 
 
 }
