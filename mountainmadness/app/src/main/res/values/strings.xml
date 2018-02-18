@@ -5,7 +5,7 @@
     <string name="title_activity_glc">Get Current Location</string>
     <string name="home_button">Open Map</string>
     <string name="historyButton">History</string>
-    <string name="map_button">Toggle Tracking</string>
+    <string name="map_button">Save Location</string>
     <string name="title_activity_history">Location History</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
